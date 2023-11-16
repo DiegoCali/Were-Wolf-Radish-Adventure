@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Radish_spawn.mp3-fc68ba63fbb18cc87e9a6ad49a430dc8.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound/Radish_spawn.mp3"
+dest_files=[ "res://.import/Radish_spawn.mp3-fc68ba63fbb18cc87e9a6ad49a430dc8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
