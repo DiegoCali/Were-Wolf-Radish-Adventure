@@ -18,7 +18,7 @@ func _on_Timer_timeout():
 		mob_spawn_location.offset = randi()
 		mob.position = mob_spawn_location.position
 		mob.linear_velocity = ($Position2D.position - mob.position)
-		add_child(mob)
+		$"List of enemies".add_child(mob)
 		actual_mobs = get_child_count()
 	else:
 		actual_mobs = get_child_count()
@@ -26,3 +26,8 @@ func _on_Timer_timeout():
 
 func _on_Area2D_body_entered(_body):
 	collided += 1
+
+
+func _on_Button_pressed():
+	for i in $"List of enemies".get_child_count():
+		$"List of enemies".get_child(i).queue_free()

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Radish_spawn.mp3-fc68ba63fbb18cc87e9a6ad49a430dc8.mp
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
