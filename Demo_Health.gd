@@ -1,6 +1,6 @@
 extends CenterContainer
 
-onready var bar = $VBoxContainer/HBoxContainer/Bars/Bar
+onready var bar = $VBoxContainer/HBoxContainer/Bars/HeartContainer
 
 var current_health = 0
 
