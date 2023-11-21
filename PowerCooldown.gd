@@ -1,8 +1,7 @@
 extends ProgressBar
 
 func _ready():
-	$Timer.start()
-	$AudioStreamPlayer.autoplay = false
+	value = 100
 
 func _on_Timer_timeout():
 	if value < 100:
@@ -10,6 +9,9 @@ func _on_Timer_timeout():
 	else:
 		$AudioStreamPlayer.play()
 		$Timer.stop()
+
+func start_Timer():
+	$Timer.start()
 
 func reinit():
 	value = 0

@@ -102,4 +102,7 @@ frame = 3
 position = Vector2( 0, 36 )
 shape = SubResource( 14 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Demo_Game.gd" type="Script" id=1]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Beet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Other/Background_WW.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sound/Music/Fiambre Jam 2023.mp3" type="AudioStream" id=7]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 719, 1, 0, 0, 0, 0, 721, 479, 0, 0, 0, 0, -1, 478, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 719, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 718, 1, 0, 0, 0, 0, 719, 1 )
+}
+
+[node name="Demo_Game" type="Node"]
+script = ExtResource( 1 )
+Enemy = ExtResource( 4 )
+Beet = ExtResource( 5 )
+
+[node name="HUD" parent="." instance=ExtResource( 2 )]
+
+[node name="Start Position" type="Position2D" parent="."]
+position = Vector2( 360, 240 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+visible = false
+z_index = -1
+
+[node name="Spawn Area" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="Spawn" type="PathFollow2D" parent="Spawn Area"]
+position = Vector2( 719, 1 )
+rotation = 1.56661
+
+[node name="Enemy List" type="Node" parent="."]
+
+[node name="Beet List" type="Node" parent="."]
+
+[node name="Enemy timer" type="Timer" parent="."]
+
+[node name="Beet timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Background" type="Sprite" parent="."]
+z_index = -5
+texture = ExtResource( 6 )
+centered = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 360, 240 )
+stream = ExtResource( 7 )
+autoplay = true
+
+[connection signal="hit" from="Player" to="." method="_on_Player_hit"]
+[connection signal="howl" from="Player" to="." method="_on_Player_howl"]
+[connection signal="timeout" from="Enemy timer" to="." method="_on_Enemy_timer_timeout"]
+[connection signal="timeout" from="Beet timer" to="." method="_on_Beet_timer_timeout"]

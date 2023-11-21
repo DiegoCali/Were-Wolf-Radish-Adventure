@@ -1,5 +1,6 @@
 extends Area2D
 signal hit
+signal howl
 export (int) var speed = 300
 var screen_size
 
@@ -40,9 +41,7 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 
 func _on_Player_body_entered(_body):
-	hide()
 	emit_signal("hit")
-	$CollisionShape2D.set_deferred("disabled", true)
 
 func _input(event):
 	if event.as_text()=="Z":
@@ -52,13 +51,13 @@ func _input(event):
 
 func dash():
 	if Input.is_action_pressed("ui_right"):
-		position.x+=50
+		position.x += 50
 	elif Input.is_action_pressed("ui_left"):
-		position.x-=50
+		position.x -= 50
 	elif Input.is_action_pressed("ui_up"):
-		position.y-=50
+		position.y -= 50
 	elif Input.is_action_pressed("ui_down"):
-		position.y+=50
+		position.y += 50
 
 func howl():
-	pass
+	emit_signal("howl")
