@@ -3,6 +3,7 @@ signal hit
 signal howl
 export (int) var speed = 300
 var screen_size
+var can_be_hit = true
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -41,7 +42,16 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 
 func _on_Player_body_entered(_body):
-	emit_signal("hit")
+	if can_be_hit:
+		emit_signal("hit")
+		can_be_hit = false
+		for i in 10:
+			self.modulate.a = 0.5
+			yield(get_tree().create_timer(0.1), "timeout")
+			self.modulate.a = 1.0
+			yield(get_tree().create_timer(0.1), "timeout")
+		can_be_hit = true
+
 
 func _input(event):
 	if event.as_text()=="Z":

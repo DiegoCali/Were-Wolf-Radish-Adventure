@@ -2,6 +2,8 @@ extends Node
 export(PackedScene) var Enemy
 export(PackedScene) var Beet
 
+signal end
+
 var actual_enemies = 0
 var actual_beets = 0
 
@@ -15,7 +17,7 @@ func _ready():
 	$"Beet timer".start()
 	randomize()
 
-func _process(delta):
+func _process(_delta):
 	if $HUD/PowerCooldown.value == 100:
 		howl = true
 	else:
@@ -44,6 +46,7 @@ func _on_Player_hit():
 		player_visible = false
 		restart_mobs()
 		$HUD.restart_hud()
+		emit_signal("end")
 
 func _on_Enemy_timer_timeout():
 	if actual_enemies < 20:
